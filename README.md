@@ -14,11 +14,11 @@
 
 
 
-<img src="https://i.ibb.co/hdt2pYV/1608387387620.png" height="500em" /> <img src="https://i.ibb.co/NrrtptT/1608384353305.png" height="500em" />
-<img src="https://i.ibb.co/fN3PxrM/1608384372048.png" height="500em" />
-<img src="https://i.ibb.co/CW5xfQX/1608384389122.png" height="500em" />
-<img src="https://i.ibb.co/j6Pr2Gp/1608384402323.png" height="500em" />
-<img src="https://i.ibb.co/sKc4vLJ/1608384420565.png" height="500em" />
+<img src="https://i.ibb.co/hdt2pYV/1608387387620.png" height="300em" /> <img src="https://i.ibb.co/NrrtptT/1608384353305.png" height="300em" />
+<img src="https://i.ibb.co/fN3PxrM/1608384372048.png" height="300em" />
+<img src="https://i.ibb.co/CW5xfQX/1608384389122.png" height="300em" />
+<img src="https://i.ibb.co/j6Pr2Gp/1608384402323.png" height="300em" />
+<img src="https://i.ibb.co/sKc4vLJ/1608384420565.png" height="300em" />
 
 
 ## Features:
