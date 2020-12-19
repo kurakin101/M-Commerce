@@ -32,4 +32,4 @@
 - [ ] Google sign-in
 
 ## License
-[Nudle]() © Vasiliy Kurakin
+[Nudle](https://github.com/nuudl) © Vasiliy Kurakin
