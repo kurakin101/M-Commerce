@@ -7,6 +7,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_shop/assets/custom_icons.dart';
 import 'package:flutter_shop/widget/DialogBox.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/Authentication.dart';
 
 class LoginRegisterPage extends StatefulWidget {
@@ -52,6 +53,7 @@ class _LoginRegisterPage extends State<LoginRegisterPage> {
         print("login userId = " + userId);
       } else {
         String userId = await widget.auth.SignUp(_email, _password);
+        print("login userId = " + userId);
         print("register userId = " + userId);
         final StorageReference profileImageRef =
             FirebaseStorage.instance.ref().child("User Images");

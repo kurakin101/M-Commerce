@@ -1,8 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_shop/assets/custom_icons.dart';
+import 'package:flutter_shop/pages/CartPage.dart';
+import 'package:flutter_shop/pages/LoginRegisterPage.dart';
+import 'package:flutter_shop/pages/OrdersPage.dart';
+
 import '../auth/Authentication.dart';
 import '../model/Users.dart';
 
@@ -35,12 +39,20 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void _logoutUser() async {
-    try {
-      await widget.auth.signOut();
-      widget.onSignedOut();
-    } catch (e) {
-      print(e.toString());
-    }
+    await widget.auth.signOut();
+    widget.onSignedOut();
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => LoginRegisterPage()));
+    // try {
+    //   await widget.auth.signOut();
+    //   widget.onSignedOut();
+    //   Navigator.of(context).push(
+    //       MaterialPageRoute(builder: (context) => LoginRegisterPage()));
+    // } catch (e) {
+    //   Navigator.of(context).push(
+    //       MaterialPageRoute(builder: (context) => LoginRegisterPage()));
+    //   print(e.toString());
+    // }
   }
 
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -49,23 +61,23 @@ class _ProfilePageState extends State<ProfilePage> {
 
 //Недописаная функция сохранения/обновления профиля. Возможно в будущем будет дописана
 
-  // void saveToDatabase(_description) {
-  //
-  //   DatabaseReference ref = FirebaseDatabase.instance.reference();
-  //
-  //
-  //   var data = {
-  //     "description" : _description,
-  //
-  //   };
-  //
-  //   ref.child("Users").child(userId).push().set(data);
-  // }
+// void saveToDatabase(_description) {
+//
+//   DatabaseReference ref = FirebaseDatabase.instance.reference();
+//
+//
+//   var data = {
+//     "description" : _description,
+//
+//   };
+//
+//   ref.child("Users").child(userId).push().set(data);
+// }
 
   void inputData(userId) async {
     final FirebaseUser user = await auth.currentUser();
     final userId = user.uid;
-    // here you write the codes to input the data into firebase real-time database
+// here you write the codes to input the data into firebase real-time database
     DatabaseReference userRef =
         FirebaseDatabase.instance.reference().child("Users").child(userId);
 
@@ -110,7 +122,7 @@ class _ProfilePageState extends State<ProfilePage> {
         child: NeumorphicBackground(
           child: Container(
             child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+// physics: NeverScrollableScrollPhysics(),
               itemCount: usersList.length,
               itemBuilder: (context, index) {
                 return Container(
@@ -134,15 +146,15 @@ class _ProfilePageState extends State<ProfilePage> {
       String lastName, String uId) {
     return SafeArea(
       child: Container(
-        // height: double.infinity,
-        // width:double.infinity,
+// height: double.infinity,
+// width:double.infinity,
         child: Column(
           children: <Widget>[
             Column(
               children: [
-                // Container(
-                //   margin: EdgeInsets.only(left: 12, right: 12, top: 10),
-                // ),
+// Container(
+//   margin: EdgeInsets.only(left: 12, right: 12, top: 10),
+// ),
                 Neumorphic(
                   margin: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -158,10 +170,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: NeumorphicStyle(
                               boxShape: NeumorphicBoxShape.circle(),
                               depth: NeumorphicTheme.embossDepth(context),
-                              // border: NeumorphicBorder(
-                              //   color: Colors.cyan,
-                              //   width: 2,
-                              // ),
+// border: NeumorphicBorder(
+//   color: Colors.cyan,
+//   width: 2,
+// ),
                             ),
                             child: Container(
                                 width: 120.0,
@@ -226,13 +238,97 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               onPressed: () => {},
-              // onPressed: () => saveToDatabase(_description),
+// onPressed: () => saveToDatabase(_description),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  NeumorphicButton(
+                    onPressed: () => {},
+                    child: Row(
+                      children: [
+                        Text("Messages"),
+                        Spacer(),
+                        Icon(Icons.messenger_outline_outlined),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  NeumorphicButton(
+onPressed: () => {_navigateToCartScreen(context),},
+                    child: Row(
+                      children: [
+                        Text("My Cart"),
+                        Spacer(),
+                        Icon(Icons.add_shopping_cart_outlined),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  NeumorphicButton(
+                    onPressed: () => {},
+                    child: Row(
+                      children: [
+                        Text("My Products"),
+                        Spacer(),
+                        Icon(Icons.widgets_outlined),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  NeumorphicButton(
+                    onPressed: () => {_navigateToOrdersScreen(context),},
+                    child: Row(
+                      children: [
+                        Text("My Orders"),
+                        Spacer(),
+                        Icon(Icons.assignment_ind_outlined),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  NeumorphicButton(
+                    onPressed: () => _logoutUser(),
+                    child: Row(
+                      children: [
+                        Text("Sign Out"),
+                        Spacer(),
+                        Icon(Icons.app_blocking_outlined),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
   }
+}
+
+void _navigateToCartScreen(BuildContext context) {
+  Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => CartPage()));
+}
+void _navigateToOrdersScreen(BuildContext context) {
+  Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => OrdersPage()));
 }
 
 class _TextField extends StatefulWidget {
@@ -277,7 +373,7 @@ class __TextFieldState extends State<_TextField> {
             depth: NeumorphicTheme.embossDepth(context),
             intensity: 0.80,
           ),
-          // padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+// padding: EdgeInsets.symmetric(vertical: 14, horizontal: 18),
           child: Container(
             height: 170,
             padding: EdgeInsets.all(12),

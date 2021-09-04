@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:intl/intl.dart';
@@ -60,15 +61,19 @@ class _UploadPhotoPageState extends State<UploadPhotoPage> {
     goToHomePage();
   }
 
-  void saveToDatabase(url) {
+  void saveToDatabase(url) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
     var dbTimeKey = new DateTime.now();
     var formatDate = new DateFormat('MMM d, yyyy');
 
+    final FirebaseUser user = await auth.currentUser();
+    final ownerId = user.uid;
     String date = formatDate.format(dbTimeKey);
 
     DatabaseReference ref = FirebaseDatabase.instance.reference();
 
     var data = {
+      "ownerId": ownerId,
       "image": url,
       "description": _description,
       "date": date,

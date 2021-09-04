@@ -1,12 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_shop/model/Cart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/Authentication.dart';
 import '../model/Products.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'DetailsPage.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({
+class CartPage extends StatefulWidget {
+  CartPage({
     this.auth,
     this.onSignedOut,
   });
@@ -16,36 +19,40 @@ class HomePage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _HomePageState();
+    return _CartPageState();
   }
 }
 
-class _HomePageState extends State<HomePage> {
+class _CartPageState extends State<CartPage> {
   int currentIndex;
 
-  List<Products> productsList = [];
+  List<Cart> productsList = [];
 
-  @override
-  void initState() {
-    super.initState();
-    currentIndex = 0;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
+  String buyerId = " ";
+
+  void getCartData(buyerId) async {
+    FirebaseUser user = await auth.currentUser();
+    buyerId = user.uid;
     DatabaseReference productRef =
-        FirebaseDatabase.instance.reference().child("Products");
+    FirebaseDatabase.instance.reference().child("Cart").child(buyerId);
 
     productRef.once().then((DataSnapshot snap) {
       var KEYS = snap.value.keys;
       var DATA = snap.value;
 
+      print("! $KEYS");
+      print("!! $DATA");
       productsList.clear();
 
       for (var key in KEYS) {
-        print("Key of KEYS: " + key);
-        print("Key of snapshot: " + snap.key);
+        print("Key of KEYS!: " + key);
+        print("Key of snapshot!: " + snap.key);
 
-        Products products = new Products(
+        Cart products = new Cart(
             key,
-            DATA[key]['ownerId'],
+            DATA[key]['uId'],
             DATA[key]['image'],
             DATA[key]['description'],
             DATA[key]['date'],
@@ -59,6 +66,13 @@ class _HomePageState extends State<HomePage> {
         print('Length: $productsList.length');
       });
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = 0;
+    getCartData(buyerId);
   }
 
   void _logoutUser() async {

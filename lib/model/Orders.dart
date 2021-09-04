@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 
-class Products {
+class Orders {
   String _id;
   String _ownerId;
   String _image;
@@ -10,7 +10,7 @@ class Products {
   String _name;
   String _category;
 
-  Products(this._id, this._ownerId, this._image, this._description, this._date, this._price, this._name, this._category);
+  Orders(this._id, this._ownerId, this._image, this._description, this._date, this._price, this._name, this._category);
 
   String get id => _id;
 
@@ -28,7 +28,7 @@ class Products {
 
   String get category => _category;
 
-  Products.fromSnapshot(DataSnapshot snapshot) {
+  Orders.fromSnapshot(DataSnapshot snapshot) {
     _id = snapshot.key;
     _ownerId = snapshot.value['ownerId'];
     _image = snapshot.value['image'];
