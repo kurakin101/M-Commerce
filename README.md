@@ -10,6 +10,8 @@
 - **[mapbox](https://www.mapbox.com/)**
 - **[FlutterIcon](https://www.fluttericon.com/)**
 - **[Neumorphic UI](https://github.com/Idean/Flutter-Neumorphic)** 
+- <img src="https://raw.githubusercontent.com/grammofone/BuildSolutions/main/assets/lib/images/out.gif" height="600" />
+
 
 
 
@@ -19,7 +21,6 @@
 <img src="https://i.ibb.co/CW5xfQX/1608384389122.png" height="400em" />
 <img src="https://i.ibb.co/j6Pr2Gp/1608384402323.png" height="400em" />
 <img src="https://i.ibb.co/sKc4vLJ/1608384420565.png" height="400em" />
-<img src="https://raw.githubusercontent.com/grammofone/BuildSolutions/main/assets/lib/images/out.gif" height="400em" />
 
 
 
