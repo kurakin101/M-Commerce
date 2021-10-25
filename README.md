@@ -1,7 +1,6 @@
 # `Flutter Neumorphic`
 ###### This image was taken from [Medium](https://medium.com/flutter-community/neumorphic-designs-in-flutter-eab9a4de2059)
 <img src="https://i.ibb.co/Y3KpxbK/imageonline-co-roundcorner.png" width="1200">
-<img src="https://raw.githubusercontent.com/grammofone/BuildSolutions/main/assets/lib/images/out.gif" width="1200" />
 
 
 
